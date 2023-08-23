@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: fine-ops-gateway
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-domain-issuer
+spec:
+  gatewayClassName: cillium-gateway-class
+  listeners:
+    - name: https
+      hostname: "*.fine-ops.com"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: fine-ops

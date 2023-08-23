@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-fine-ops
+  namespace: default
+spec:
+  dnsNames:
+    - "*.fine-ops.com"
+  secretName: fine-ops
+  issuerRef:
+    name: cloudflare-domain-issuer
+    kind: ClusterIssuer
